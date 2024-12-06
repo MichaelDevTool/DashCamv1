@@ -1,0 +1,51 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000; 
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.video-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    max-width: 100%; 
+}
+
+.video-wrapper {
+    flex: 1; 
+    position: relative;
+    width: 100%;
+}
+
+.video-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border: 4px solid white;
+    box-sizing: border-box; 
+    border-radius: 8px; 
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .video-container {
+        flex-direction: column;
+        gap: 5px; 
+    }
+    .video-js {
+        border: 2px solid white; 
+        border-radius: 4px; 
+    }
+}

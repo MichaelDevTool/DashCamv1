@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductores de Video - DashCam</title>
+    
+    <!-- Incluir el CSS desde archivo externo -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Incluir el CSS de Video.js desde CDN -->
+    <link href="https://vjs.zencdn.net/7.21.1/video-js.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="video-container">
+        <!-- Primer Reproductor de Video.js -->
+        <div class="video-wrapper">
+            <video
+                id="video_player_1"
+                class="video-js vjs-default-skin"
+                controls
+                preload="auto"
+                data-setup='{}'
+                tabindex="-1"
+            >
+                <source src="http://dvr02.dashcam.pe:6604/hls/0_99903_1_1.m3u8?jsession=6f2cdba7e43a4192bdec37df254081a4" type="application/x-mpegURL" />
+                Tu navegador no soporta el elemento de video HTML5.
+            </video>
+        </div>
+        
+        <!-- Segundo Reproductor de Video.js -->
+        <div class="video-wrapper">
+            <video
+                id="video_player_2"
+                class="video-js vjs-default-skin"
+                controls
+                preload="auto"
+                data-setup='{}'
+                tabindex="-1"
+            >
+                <source src="http://dvr02.dashcam.pe:6604/hls/0_99903_0_1.m3u8?jsession=6f2cdba7e43a4192bdec37df254081a4" type="application/x-mpegURL" />
+                Tu navegador no soporta el elemento de video HTML5.
+            </video>
+        </div>
+    </div>
+
+    <!-- Incluir Video.js desde CDN -->
+    <script src="https://vjs.zencdn.net/7.21.1/video.min.js"></script>
+    
+    <!-- Incluir videojs-http-streaming (HLS) plugin si es necesario -->
+    <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.min.js"></script>
+    
+    <!-- Incluir el archivo JavaScript externo -->
+    <script src="scripts.js"></script>
+</body>
+</html>
