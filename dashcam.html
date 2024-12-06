@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductores de Video - DashCam</title>
+    
+    <!-- Incluir el CSS de Video.js desde CDN -->
+    <link href="https://vjs.zencdn.net/7.21.1/video-js.css" rel="stylesheet" />
+    
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000; 
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            height: 100%;
+            max-width: 100%; 
+        }
+        .video-wrapper {
+            flex: 1; 
+            position: relative;
+            width: 100%;
+          
+        }
+        .video-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            border: 4px solid white;
+            box-sizing: border-box; 
+            border-radius: 8px; 
+        }
+        @media (max-width: 768px) {
+            .video-container {
+                flex-direction: column;
+                gap: 5px; 
+            }
+            .video-js {
+                border: 2px solid white; 
+                border-radius: 4px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <!-- Primer Reproductor de Video.js -->
+        <div class="video-wrapper">
+            <video
+                id="video_player_1"
+                class="video-js vjs-default-skin"
+                controls
+                preload="auto"
+                data-setup='{}'
+                tabindex="-1"
+            >
+                <source src="http://dvr02.dashcam.pe:6604/hls/0_99903_1_1.m3u8?jsession=6f2cdba7e43a4192bdec37df254081a4" type="application/x-mpegURL" />
+                Tu navegador no soporta el elemento de video HTML5.
+            </video>
+        </div>
+        <!-- Segundo Reproductor de Video.js -->
+        <div class="video-wrapper">
+            <video
+                id="video_player_2"
+                class="video-js vjs-default-skin"
+                controls
+                preload="auto"
+                data-setup='{}'
+                tabindex="-1"
+            >
+                <source src="http://dvr02.dashcam.pe:6604/hls/0_99903_0_1.m3u8?jsession=6f2cdba7e43a4192bdec37df254081a4" type="application/x-mpegURL" />
+                Tu navegador no soporta el elemento de video HTML5.
+            </video>
+        </div>
+    </div>
+
+    <!-- Incluir Video.js desde CDN -->
+    <script src="https://vjs.zencdn.net/7.21.1/video.min.js"></script>
+    
+    <!-- Incluir videojs-http-streaming (HLS) plugin si es necesario -->
+    <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.min.js"></script>
+    
+    <script>
+        // Función para inicializar un reproductor Video.js
+        function initializePlayer(playerId) {
+            var player = videojs(playerId, {
+                autoplay: false,
+                controls: true,
+                responsive: true,
+                fluid: true
+            });
+
+            // Manejar errores de reproducción
+            player.on('error', function() {
+                var error = player.error();
+                console.error('Error de reproducción en ' + playerId + ':', error);
+                alert('Hubo un error al reproducir el video: ' + error.message);
+            });
+        }
+
+        // Inicializar ambos reproductores
+        initializePlayer('video_player_1');
+        initializePlayer('video_player_2');
+    </script>
+</body>
+</html>
